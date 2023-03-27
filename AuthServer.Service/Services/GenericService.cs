@@ -31,14 +31,14 @@ namespace AuthServer.Service.Services
 
         public async Task<Response<IEnumerable<TDto>>> GetAllAsync()
         {
-            var products = ObjectMapper.Mapper.Map<TDto>(await _genericRepository.GetAllAsync());
-            
+            var products = ObjectMapper.Mapper.Map<IEnumerable<TDto>>(await _genericRepository.GetAllAsync());
+            return Response<IEnumerable<TDto>>.Success(products, 200);
         }
 
         public async Task<Response<IEnumerable<TDto>>> WhereAsync(Expression<Func<TEntity, bool>> predication)
         {
-            //var findProduct = ObjectMapper.Mapper.Map<TDto>(await _genericRepository.Where(predication));
-            //return Response<IEnumerable<TDto>>.Success(findProduct, 200);
+            var findProduct = ObjectMapper.Mapper.Map<IEnumerable<TDto>>(_genericRepository.Where(predication));
+            return Response<IEnumerable<TDto>>.Success(findProduct, 200);
         }
 
         public async Task<Response<TDto>> AddAsync(TDto tdto)
@@ -50,14 +50,18 @@ namespace AuthServer.Service.Services
             return Response<TDto>.Success(newDto, 200);
         }
 
-        public Task<Response<NoDataDto>> Remove(TDto tdto)
+        public async Task<Response<NoDataDto>> Remove(TDto tdto)
         {
-            throw new NotImplementedException();
+            _genericRepository.Remove(ObjectMapper.Mapper.Map<TEntity>(tdto));
+            await _unitOfWork.CommitAsync();
+            return Response<NoDataDto>.Success(200);
         }
 
-        public Task<Response<NoDataDto>> UpdateAsync(TDto tdto)
+        public async Task<Response<NoDataDto>> UpdateAsync(TDto tdto)
         {
-            throw new NotImplementedException();
+            _genericRepository.UpdateAsync(ObjectMapper.Mapper.Map<TEntity>(tdto));
+            await _unitOfWork.CommitAsync();
+            return Response<NoDataDto>.Success(200);
         }
     }
 }
