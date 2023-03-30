@@ -18,14 +18,16 @@ namespace AuthServer.Data.Repositories
             _dbContext = context;
             _dbSet = context.Set<TEntity>();
         }
+
         public async Task<TEntity> GetByIdAsync(int id)
         {
             var result = await _dbSet.FindAsync(id);
-            
-            if (result!=null)
+
+            if (result != null)
             {
                 _dbContext.Entry(result).State = EntityState.Detached;
             }
+
             return result;
         }
 
@@ -33,6 +35,7 @@ namespace AuthServer.Data.Repositories
         {
             return await _dbSet.ToListAsync();
         }
+
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predication)
         {
             return _dbSet.Where(predication);

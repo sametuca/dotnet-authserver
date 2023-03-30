@@ -2,19 +2,18 @@
 
 namespace SharedLibrary.Dtos
 {
-    public class Response<T> where T:class
+    public class Response<T> where T : class
     {
         public T Data { get; set; }
         public int StatusCode { get; set; }
 
-        [JsonIgnore]
-        public bool IsSuccess { get; set; }
+        [JsonIgnore] public bool IsSuccess { get; set; }
 
         public ErrorDto Error { get; set; }
 
         public static Response<T> Success(T data, int statusCode)
         {
-            return new Response<T> { Data = data, StatusCode = statusCode,IsSuccess = true};
+            return new Response<T> { Data = data, StatusCode = statusCode, IsSuccess = true };
         }
 
         public static Response<T> Success(int statusCode)
@@ -22,16 +21,15 @@ namespace SharedLibrary.Dtos
             return new Response<T> { Data = default, StatusCode = statusCode, IsSuccess = true };
         }
 
-        public static Response<T> Fail(ErrorDto errorDto,int statusCode)
+        public static Response<T> Fail(ErrorDto errorDto, int statusCode)
         {
             return new Response<T> { Error = errorDto, StatusCode = statusCode, IsSuccess = false };
         }
 
-        public static Response<T> Fail(string errorMessage, int statusCode,bool isShow)
+        public static Response<T> Fail(string errorMessage, int statusCode, bool isShow)
         {
             var errorDto = new ErrorDto(error: errorMessage, isShow);
             return new Response<T> { Error = errorDto, StatusCode = statusCode, IsSuccess = false };
         }
     }
-
 }
