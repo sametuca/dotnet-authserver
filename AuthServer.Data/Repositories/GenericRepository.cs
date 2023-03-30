@@ -26,16 +26,13 @@ namespace AuthServer.Data.Repositories
             {
                 _dbContext.Entry(result).State = EntityState.Detached;
             }
-
             return result;
         }
 
         public async Task<List<TEntity>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
-
         }
-
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predication)
         {
             return _dbSet.Where(predication);

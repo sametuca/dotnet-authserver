@@ -24,9 +24,8 @@ namespace AuthServer.Service.Services
 
         public async Task<Response<IEnumerable<TDto>>> GetByIdAsync(int id)
         {
-            var products = ObjectMapper.Mapper.Map<List<TDto>>(await _genericRepository.GetAllAsync());
+            var products = ObjectMapper.Mapper.Map<IEnumerable<TDto>>(await _genericRepository.GetByIdAsync(id));
             return Response<IEnumerable<TDto>>.Success(products, 200);
-
         }
 
         public async Task<Response<IEnumerable<TDto>>> GetAllAsync()
