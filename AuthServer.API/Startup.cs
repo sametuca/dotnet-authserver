@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SharedLibrary.Configurations;
 
 namespace AuthServer.API
 {
@@ -18,6 +19,9 @@ namespace AuthServer.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //appsettings.json içerisindeki TokenOption kısmını CustomTokenOption sınıfına map ediyoruz.
+            services.Configure<CustomTokenOption>(Configuration.GetSection("TokenOption"));
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
