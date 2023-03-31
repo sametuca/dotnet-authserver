@@ -11,7 +11,6 @@ namespace AuthServer.Core.Repositories
         Task<TEntity> GetByIdAsync(int id);
         Task<List<TEntity>> GetAllAsync();
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predication);
-
         Task AddAsync(TEntity entity);
         void Remove(TEntity entity);
         TEntity UpdateAsync(TEntity entity);

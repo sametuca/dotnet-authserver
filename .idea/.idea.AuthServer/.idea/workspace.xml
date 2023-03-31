@@ -7,15 +7,74 @@
     <projectFile profileName="MiniApp3.API">MiniApp3.API/MiniApp3.API.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15b61846-d7b4-4d0e-8f50-17209845cd8c" name="Changes" comment="" />
+    <list default="true" id="15b61846-d7b4-4d0e-8f50-17209845cd8c" name="Changes" comment="genericServis -&gt; GetByIdAsync gövdesinde gelen id parametresini kullandık.">
+      <change beforePath="$PROJECT_DIR$/AuthServer.API/AuthServer.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.API/AuthServer.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.API/Controllers/WeatherForecastController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.API/Controllers/WeatherForecastController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.API/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.API/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.API/WeatherForecast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.API/WeatherForecast.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/AuthServer.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/AuthServer.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Configuration/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Configuration/Client.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/DTOs/ClientLoginDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/DTOs/ClientLoginDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/DTOs/ClientTokenDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/DTOs/ClientTokenDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/DTOs/CreateUserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/DTOs/CreateUserDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/DTOs/LoginDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/DTOs/LoginDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/DTOs/ProductDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/DTOs/ProductDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/DTOs/TokenDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/DTOs/TokenDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/DTOs/UserAppDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/DTOs/UserAppDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Models/Product.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Models/UserApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Models/UserApp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Models/UserRefreshToken.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Models/UserRefreshToken.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Repositories/IGenericRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Repositories/IGenericRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Services/IAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Services/IAuthenticationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Services/IServiceGeneric.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Services/IServiceGeneric.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Services/ITokenService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Services/ITokenService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/Services/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/Services/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Core/UnitOfWork/IUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Core/UnitOfWork/IUnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Data/AuthServer.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Data/AuthServer.Data.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Data/Configuration/ProductConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Data/Configuration/ProductConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Data/Configuration/UserAppConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Data/Configuration/UserAppConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Data/Configuration/UserRefreshTokenConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Data/Configuration/UserRefreshTokenConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Data/Repositories/GenericRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Data/Repositories/GenericRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Data/UnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Data/UnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Service/AuthServer.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Service/AuthServer.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Service/DtoMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Service/DtoMapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Service/ObjectMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Service/ObjectMapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer.Service/Services/GenericService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer.Service/Services/GenericService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp1.API/Controllers/WeatherForecastController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp1.API/Controllers/WeatherForecastController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp1.API/MiniApp1.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp1.API/MiniApp1.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp1.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp1.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp1.API/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp1.API/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp1.API/WeatherForecast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp1.API/WeatherForecast.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp2.API/Controllers/WeatherForecastController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp2.API/Controllers/WeatherForecastController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp2.API/MiniApp2.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp2.API/MiniApp2.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp2.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp2.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp2.API/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp2.API/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp2.API/WeatherForecast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp2.API/WeatherForecast.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp3.API/Controllers/WeatherForecastController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp3.API/Controllers/WeatherForecastController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp3.API/MiniApp3.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp3.API/MiniApp3.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp3.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp3.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp3.API/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp3.API/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniApp3.API/WeatherForecast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MiniApp3.API/WeatherForecast.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SharedLibrary/Dtos/ErrorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SharedLibrary/Dtos/ErrorDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SharedLibrary/Dtos/NoDataDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SharedLibrary/Dtos/NoDataDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SharedLibrary/Dtos/Response.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SharedLibrary/Dtos/Response.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SharedLibrary/SharedLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SharedLibrary/SharedLibrary.csproj" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Users/sametuca/RiderProjects/dotnet-authserver/AuthServer.Core/Services/IUserService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/sametuca/RiderProjects/dotnet-authserver/AuthServer.Data/AppDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/sametuca/RiderProjects/dotnet-authserver/AuthServer.Data/Repositories/GenericRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/sametuca/RiderProjects/dotnet-authserver/AuthServer.Service/Services/GenericService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/sametuca/RiderProjects/dotnet-authserver/AuthServer.Service/Services/GenericService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/sametuca/RiderProjects/dotnet-authserver/MiniApp2.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -34,6 +93,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -115,6 +175,9 @@
       <option name="presentableId" value="Default" />
       <updated>1679899537224</updated>
       <workItem from="1679899538322" duration="5366000" />
+      <workItem from="1680154450910" duration="301000" />
+      <workItem from="1680170185412" duration="649000" />
+      <workItem from="1680180573213" duration="888000" />
     </task>
     <task id="LOCAL-00001" summary="GenericService.cs added function body">
       <created>1679902527035</created>
@@ -130,7 +193,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679902540712</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="app db context">
+      <created>1680172561927</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1680172561927</updated>
+    </task>
+    <task id="LOCAL-00004" summary="genericServis -&gt; GetByIdAsync gövdesinde gelen id parametresini kullandık.">
+      <created>1680181276183</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1680181276183</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +219,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="GenericService.cs added function body" />
     <MESSAGE value="added vsc" />
-    <option name="LAST_COMMIT_MESSAGE" value="added vsc" />
+    <MESSAGE value="app db context" />
+    <MESSAGE value="genericServis -&gt; GetByIdAsync gövdesinde gelen id parametresini kullandık." />
+    <option name="LAST_COMMIT_MESSAGE" value="genericServis -&gt; GetByIdAsync gövdesinde gelen id parametresini kullandık." />
   </component>
 </project>

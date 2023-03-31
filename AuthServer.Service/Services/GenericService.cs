@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 using AuthServer.Core.Repositories;
 using AuthServer.Core.Services;
 using AuthServer.Core.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Dtos;
 
 namespace AuthServer.Service.Services
 {
-    public class GenericService<TEntity,TDto> : IServiceGeneric<TEntity,TDto> where TEntity : class where TDto:class
+    public class GenericService<TEntity, TDto> : IServiceGeneric<TEntity, TDto> where TEntity : class where TDto : class
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepository<TEntity> _genericRepository;
@@ -24,9 +25,8 @@ namespace AuthServer.Service.Services
 
         public async Task<Response<IEnumerable<TDto>>> GetByIdAsync(int id)
         {
-            var products = ObjectMapper.Mapper.Map<List<TDto>>(await _genericRepository.GetAllAsync());
+            var products = ObjectMapper.Mapper.Map<IEnumerable<TDto>>(await _genericRepository.GetByIdAsync(id));
             return Response<IEnumerable<TDto>>.Success(products, 200);
-
         }
 
         public async Task<Response<IEnumerable<TDto>>> GetAllAsync()
@@ -35,10 +35,10 @@ namespace AuthServer.Service.Services
             return Response<IEnumerable<TDto>>.Success(products, 200);
         }
 
-        public async Task<Response<IEnumerable<TDto>>> WhereAsync(Expression<Func<TEntity, bool>> predication)
+        public async Task<Response<IEnumerable<TDto>>> Where(Expression<Func<TEntity, bool>> predication)
         {
-            var findProduct = ObjectMapper.Mapper.Map<IEnumerable<TDto>>(_genericRepository.Where(predication));
-            return Response<IEnumerable<TDto>>.Success(findProduct, 200);
+            var predicateProducts = _genericRepository.Where(predication);
+            return Response<IEnumerable<TDto>>.Success(ObjectMapper.Mapper.Map<IEnumerable<TDto>>(await predicateProducts.ToListAsync()), 200);
         }
 
         public async Task<Response<TDto>> AddAsync(TDto tdto)
@@ -50,15 +50,25 @@ namespace AuthServer.Service.Services
             return Response<TDto>.Success(newDto, 200);
         }
 
-        public async Task<Response<NoDataDto>> Remove(TDto tdto)
+        public async Task<Response<NoDataDto>> Remove(int id)
         {
-            _genericRepository.Remove(ObjectMapper.Mapper.Map<TEntity>(tdto));
+            var findData = await _genericRepository.GetByIdAsync(id);
+            if (findData == null)
+            {
+                return Response<NoDataDto>.Fail("Id not found", 404, true);
+            }
+            _genericRepository.Remove(findData);
             await _unitOfWork.CommitAsync();
             return Response<NoDataDto>.Success(200);
         }
 
-        public async Task<Response<NoDataDto>> UpdateAsync(TDto tdto)
+        public async Task<Response<NoDataDto>> UpdateAsync(TDto tdto,int id)
         {
+            var updateFindData = _genericRepository.GetByIdAsync(id);
+            if (updateFindData==null)
+            {
+                return Response<NoDataDto>.Fail("Id not found", 404, true);
+            }
             _genericRepository.UpdateAsync(ObjectMapper.Mapper.Map<TEntity>(tdto));
             await _unitOfWork.CommitAsync();
             return Response<NoDataDto>.Success(200);
