@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Security.Cryptography;
 using AuthServer.Core.Configuration;
 using AuthServer.Core.DTOs;
 using AuthServer.Core.Models;
@@ -11,6 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using SharedLibrary.Configurations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace AuthServer.Service.Services
 {
