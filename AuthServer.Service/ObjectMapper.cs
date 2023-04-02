@@ -5,8 +5,8 @@ namespace AuthServer.Service
 {
     public static class ObjectMapper
     {
-        //lazy loading using
-        private static readonly Lazy<IMapper> lazy = new Lazy<IMapper>(() =>
+        //lazy loading only needing this func loading data
+        private static readonly Lazy<IMapper> lazy = new(() =>
         {
             var config = new MapperConfiguration(cfg => { cfg.AddProfile<DtoMapper>(); });
             return config.CreateMapper();
