@@ -5,6 +5,7 @@ namespace AuthServer.Service
 {
     public static class ObjectMapper
     {
+        //lazy loading using
         private static readonly Lazy<IMapper> lazy = new Lazy<IMapper>(() =>
         {
             var config = new MapperConfiguration(cfg => { cfg.AddProfile<DtoMapper>(); });
