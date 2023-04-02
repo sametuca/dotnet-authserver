@@ -4,25 +4,27 @@ using AuthServer.Core.Models;
 using AuthServer.Core.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Tokens;
 using SharedLibrary.Configurations;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace AuthServer.Service.Services
 {
     public class TokenService : ITokenService
     {
         private readonly UserManager<UserApp> _userManager;
-        private readonly CustomTokenOption _customToken;
+        private readonly CustomTokenOption _tokenOption;
 
         public TokenService(UserManager<UserApp> userManager, IOptions<CustomTokenOption> customToken)
         {
             _userManager = userManager;
-            _customToken = customToken.Value;
+            _tokenOption = customToken.Value;
         }
 
         private string CreateRefreshToken()
@@ -53,14 +55,74 @@ namespace AuthServer.Service.Services
             return userList;
         }
 
+        private IEnumerable<Claim> GetClaimsByClient(Client client)
+        {
+            var claims = new List<Claim>();
+            claims.AddRange(client.Audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString());
+            new Claim(JwtRegisteredClaimNames.Sub, client.Id.ToString());
+            return claims;
+        }
+
         public TokenDto CreateToken(UserApp userApp)
         {
-            throw new NotImplementedException();
+            var accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOption.AccessTokenExpiration);
+            var refreshTokenExpiration = DateTime.Now.AddMinutes(_tokenOption.AccessTokenExpiration);
+
+            var securityKey = SignService.GetSymmetricSecurityKey(_tokenOption.SecurityKey);
+
+            SigningCredentials signingCredentials = new
+                (securityKey, SecurityAlgorithms.HmacSha256Signature);
+
+            JwtSecurityToken jwtSecurityToken = new(
+                issuer: _tokenOption.Issuer,
+                expires: accessTokenExpiration,
+                notBefore: DateTime.Now,
+                claims: GetClaim(userApp, _tokenOption.Audience),
+                signingCredentials: signingCredentials
+            );
+
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.WriteToken(jwtSecurityToken);
+
+            var tokenDto = new TokenDto
+            {
+                AccessToken = token,
+                RefreshToken = CreateRefreshToken(),
+                AccessTokenExpiration = accessTokenExpiration,
+                RefreshTokenExpiration = refreshTokenExpiration
+            };
+
+            return tokenDto;
         }
 
         public ClientTokenDto CreateTokenByClient(Client client)
         {
-            throw new NotImplementedException();
+            var accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOption.AccessTokenExpiration);
+
+            var securityKey = SignService.GetSymmetricSecurityKey(_tokenOption.SecurityKey);
+
+            SigningCredentials signingCredentials = new
+                (securityKey, SecurityAlgorithms.HmacSha256Signature);
+
+            JwtSecurityToken jwtSecurityToken = new(
+                issuer: _tokenOption.Issuer,
+                expires: accessTokenExpiration,
+                notBefore: DateTime.Now,
+                claims: GetClaimsByClient(client),
+                signingCredentials: signingCredentials
+            );
+
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.WriteToken(jwtSecurityToken);
+
+            var tokenDto = new ClientTokenDto
+            {
+                AccessToken = token,
+                AccessTokenExpiration = accessTokenExpiration,
+            };
+
+            return tokenDto;
         }
     }
 }
